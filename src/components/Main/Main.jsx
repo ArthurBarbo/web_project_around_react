@@ -5,7 +5,7 @@ import EditProfile from "./components/Popup/components/EditProfile/EditProfile.j
 import NewCard from "./components/Popup/components/NewCard/NewCard.jsx";
 import EditAvatar from "./components/Popup/components/EditAvatar/EditAvatar.jsx";
 import ImagePopup from "./components/ImagePopup/ImagePopup.jsx";
-import Card from "./components/Card/Card.Jsx";
+import Card from "./components/Card/Card.jsx";
 
 const cards = [
   {
