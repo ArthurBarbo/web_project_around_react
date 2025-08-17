@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 export default function Popup(props) {
   const { title, children, onClose } = props;
   return (

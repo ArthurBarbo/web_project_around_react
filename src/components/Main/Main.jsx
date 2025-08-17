@@ -1,4 +1,4 @@
- import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import avatarImg from "../../images/avatar.jpg";
 import Popup from "./components/Popup/Popup.jsx";
 import EditProfile from "./components/Popup/editProfile/EditProfile.jsx";
@@ -7,6 +7,7 @@ import EditAvatar from "./components/Popup/editAvatar/EditAvatar.jsx";
 import ImagePopup from "./components/Popup/imagePopup/ImagePopup.jsx";
 import Card from "./components/Card/Card.jsx";
 import api from "../../utils/api.js";
+import { removeCard } from "./components/Popup/removeCard/RemoveCard.jsx";
 import CurrentUserContext from "../../contexts/CurrentUserContext.js";
 
 export default function Main({ cards, setCards }) {
@@ -30,14 +31,9 @@ export default function Main({ cards, setCards }) {
   }
 
   async function handleCardDelete(card) {
-
-    await api
-      .deleteCard(card._id)
-      .then(() => {
-        setCards((state) => state.filter((c) => c._id !== card._id));
-      })
-      .catch((error) => console.error(error));
+    removeCard(card._id, setCards);
   }
+
   const newCardPopup = {
     title: "Novo Local",
     children: (
