@@ -15,6 +15,7 @@ function App() {
         setCurrentUser(UserData);
       })
       .catch((err) => console.log("erro ao buscar usuário", err));
+
     api
       .getCards()
       .then((cardsData) => {

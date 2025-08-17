@@ -175,13 +175,13 @@
   display: block;
 }
 
-.popup__button_disabled {
+/* .popup__button_disabled {
   background-color: transparent;
   color: #66666654;
   cursor: default;
   pointer-events: none;
   border: solid 2px;
-}
+} */
 
 @media screen and (max-width: 632px) {
   .popup__conteiner {

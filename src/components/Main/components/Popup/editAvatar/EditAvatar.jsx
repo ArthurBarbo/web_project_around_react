@@ -1,6 +1,27 @@
-export default function EditAvatar() {
+import { useState, useContext } from "react";
+import CurrentUserContext from "../../../../../contexts/CurrentUserContext";
+
+export default function EditAvatar({ onClose }) {
+  const { handleUpdateAvatar } = useContext(CurrentUserContext);
+  const [avatar, setAvatar] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handleUpdateAvatar(avatar)
+      .then(() => {
+        setAvatar("");
+        onClose();
+      })
+      .catch((err) => console.error(err));
+  };
+
   return (
-    <form className="popup__avatar-form" id="avatar-form" noValidate>
+    <form
+      className="popup__avatar-form"
+      id="avatar-form"
+      noValidate
+      onSubmit={handleSubmit}
+    >
       <input
         className="popup__avatar"
         type="url"
@@ -8,6 +29,8 @@ export default function EditAvatar() {
         name="avatar"
         placeholder="Link para foto de perfil"
         required
+        value={avatar}
+        onChange={(e) => setAvatar(e.target.value)}
       />
       <span id="avatar-link-error" className="popup__error"></span>
       <button
