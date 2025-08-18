@@ -1,11 +1,9 @@
 import { useState, useContext } from "react";
 import CurrentUserContext from "../../../../../contexts/CurrentUserContext";
-
 export default function NewCard({ onClose, onAddCard }) {
   const { handleAddCard } = useContext(CurrentUserContext);
   const [name, setName] = useState("");
   const [link, setLink] = useState("");
-
   const handleSubmit = (e) => {
     e.preventDefault();
     handleAddCard({ name, link })
@@ -15,7 +13,6 @@ export default function NewCard({ onClose, onAddCard }) {
       })
       .catch((err) => console.error(err));
   };
-
   return (
     <form
       className="popup__addpic"
@@ -23,6 +20,7 @@ export default function NewCard({ onClose, onAddCard }) {
       id="place"
       onSubmit={handleSubmit}
     >
+      {" "}
       <input
         className="popup__name"
         id="local-name"
@@ -34,8 +32,8 @@ export default function NewCard({ onClose, onAddCard }) {
         required
         value={name}
         onChange={(e) => setName(e.target.value)}
-      />
-      <span id="local-name-error" className="popup__error"></span>
+      />{" "}
+      <span id="local-name-error" className="popup__error"></span>{" "}
       <input
         className="popup__about"
         id="link"
@@ -45,15 +43,16 @@ export default function NewCard({ onClose, onAddCard }) {
         required
         value={link}
         onChange={(e) => setLink(e.target.value)}
-      />
-      <span id="link-error" className="popup__error"></span>
+      />{" "}
+      <span id="link-error" className="popup__error"></span>{" "}
       <button
         className="popup__save popup__button_disabled"
         id="save"
         type="submit"
       >
-        Criar
-      </button>
+        {" "}
+        Criar{" "}
+      </button>{" "}
     </form>
   );
 }
