@@ -7,7 +7,7 @@ import EditAvatar from "./components/Popup/editAvatar/EditAvatar.jsx";
 import ImagePopup from "./components/Popup/imagePopup/ImagePopup.jsx";
 import Card from "./components/Card/Card.jsx";
 import api from "../../utils/api.js";
-import { removeCard } from "./components/Popup/removeCard/RemoveCard.jsx";
+import { removeCard } from "./components/Popup/removeCard/removeCard.jsx";
 import CurrentUserContext from "../../contexts/CurrentUserContext.js";
 
 export default function Main({ cards, setCards }) {
