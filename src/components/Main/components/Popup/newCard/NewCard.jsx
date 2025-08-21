@@ -1,14 +1,20 @@
 import { useState, useContext } from "react";
 import CurrentUserContext from "../../../../../contexts/CurrentUserContext";
+import { FormValidation } from "../../../../../utils/formValidator/FormValidator";
+
 export default function NewCard({ onClose, onAddCard }) {
   const { handleAddCard } = useContext(CurrentUserContext);
-  const [name, setName] = useState("");
-  const [link, setLink] = useState("");
+  const { values, errors, isValid, handleChange, resetForm } = FormValidation({
+    name: "",
+    link: "",
+  });
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleAddCard({ name, link })
+    handleAddCard({ name: values.name, link: values.link })
       .then((newCard) => {
         onAddCard(newCard);
+        resetForm();
         onClose();
       })
       .catch((err) => console.error(err));
@@ -28,12 +34,14 @@ export default function NewCard({ onClose, onAddCard }) {
         placeholder="Título"
         minLength="2"
         maxLength="30"
-        name="local-name"
+        name="name"
         required
-        value={name}
-        onChange={(e) => setName(e.target.value)}
+        value={values.name || ""}
+        onChange={handleChange}
       />{" "}
-      <span id="local-name-error" className="popup__error"></span>{" "}
+      <span id="local-name-error" className="popup__error">
+        {errors.name}
+      </span>{" "}
       <input
         className="popup__about"
         id="link"
@@ -41,12 +49,14 @@ export default function NewCard({ onClose, onAddCard }) {
         placeholder="Link de Imagem"
         name="link"
         required
-        value={link}
-        onChange={(e) => setLink(e.target.value)}
+        value={values.link || ""}
+        onChange={handleChange}
       />{" "}
-      <span id="link-error" className="popup__error"></span>{" "}
+      <span id="link-error" className="popup__error">
+        {errors.link}
+      </span>{" "}
       <button
-        className="popup__save popup__button_disabled"
+        className={`popup__save ${!isValid ? "popup__button_disabled" : ""}`}
         id="save"
         type="submit"
       >

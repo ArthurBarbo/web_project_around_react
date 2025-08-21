@@ -1,25 +1,31 @@
 import { useState, useContext, useEffect } from "react";
 import CurrentUserContext from "../../../../../contexts/CurrentUserContext";
-import api from "../../../../../utils/api"
+import api from "../../../../../utils/api";
+import { FormValidation } from "../../../../../utils/formValidator/FormValidator";
 
 export default function EditProfile({ onClose }) {
   const { currentUser, handleUpdateUser } = useContext(CurrentUserContext);
-
-  const [name, setName] = useState("");
-  const [about, setAbout] = useState("");
+  const { values, errors, isValid, handleChange, resetForm, setValues } =
+    FormValidation({ name: "", about: "" });
 
   useEffect(() => {
     if (currentUser) {
-      setName(currentUser.name);
-      setAbout(currentUser.about);
+      setValues({
+        name: currentUser.name || "",
+        about: currentUser.about || "",
+      });
     }
-  }, [currentUser]);
+  }, [currentUser, setValues]);
 
-  function handleSubmit(e) {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    handleUpdateUser({ name, about });
-    onClose();
-  }
+    handleUpdateUser({ name: values.name, about: values.about })
+      .then(() => {
+        resetForm();
+        onClose();
+      })
+      .catch((err) => console.error(err));
+  };
 
   return (
     <form className="popup__profile" onSubmit={handleSubmit} noValidate>
@@ -33,10 +39,12 @@ export default function EditProfile({ onClose }) {
         minLength="2"
         maxLength="40"
         required
-        value={name}
-        onChange={(e) => setName(e.target.value)}
+        value={values.name || ""}
+        onChange={handleChange}
       />
-      <span id="name-error" className="popup__error"></span>
+      <span id="name-error" className="popup__error">
+        {errors.name}
+      </span>
 
       <label htmlFor="about"></label>
       <input
@@ -48,13 +56,15 @@ export default function EditProfile({ onClose }) {
         minLength="2"
         maxLength="200"
         required
-        value={about}
-        onChange={(e) => setAbout(e.target.value)}
+        value={values.about || ""}
+        onChange={handleChange}
       />
-      <span id="about-error" className="popup__error"></span>
+      <span id="about-error" className="popup__error">
+        {errors.about}
+      </span>
 
       <button
-        className="popup__save popup__button_disabled"
+        className={`popup__save ${!isValid ? "popup__button_disabled" : ""}`}
         type="submit"
         aria-label="save form"
       >

@@ -1,18 +1,25 @@
 import { useState, useContext } from "react";
 import CurrentUserContext from "../../../../../contexts/CurrentUserContext";
+import { FormValidation } from "../../../../../utils/formValidator/FormValidator";
 
 export default function EditAvatar({ onClose }) {
   const { handleUpdateAvatar } = useContext(CurrentUserContext);
-  const [avatar, setAvatar] = useState("");
+
+  const { values, errors, isValid, handleChange, resetForm } = FormValidation({
+    avatar: "",
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleUpdateAvatar(avatar)
+
+    if (!isValid) return;
+
+    handleUpdateAvatar(values.avatar)
       .then(() => {
-        setAvatar("");
+        resetForm({ avatar: "" });
         onClose();
       })
-      .catch((err) => console.error(err));
+      .catch((err) => console.error("Erro ao atualizar avatar:", err));
   };
 
   return (
@@ -29,14 +36,17 @@ export default function EditAvatar({ onClose }) {
         name="avatar"
         placeholder="Link para foto de perfil"
         required
-        value={avatar}
-        onChange={(e) => setAvatar(e.target.value)}
+        value={values.avatar || ""}
+        onChange={handleChange}
       />
-      <span id="avatar-link-error" className="popup__error"></span>
+      <span id="avatar-link-error" className="popup__error">
+        {errors.avatar}
+      </span>
       <button
-        className="popup__save popup__button_disabled"
+        className={`popup__save ${!isValid ? "popup__button_disabled" : ""}`}
         type="submit"
         aria-label="save form"
+        disabled={!isValid}
       >
         Salvar
       </button>
