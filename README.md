@@ -27,7 +27,7 @@ CSS
 
 📦 Como Executar o Projeto
 # Clone o repositório
-git clone https://github.com/seu-usuario/seu-repositorio.git
+git clone https://github.com/ArthurBarbo/web_project_around_react
 
 # Acesse a pasta do projeto
 cd seu-repositorio
