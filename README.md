@@ -1,4 +1,4 @@
-✅ Projeto Finalizado – Vite + React
+# ✅ Projeto Finalizado – Vite + React
 Este é um projeto frontend desenvolvido com Vite e React, com foco em desempenho, interatividade e integração com APIs. O projeto foi finalizado e está pronto para uso ou futuras melhorias.
 
 🚀 Funcionalidades
@@ -7,7 +7,7 @@ Este é um projeto frontend desenvolvido com Vite e React, com foco em desempenh
 
 ✅ Interface reativa e dinâmica com React
 
-✅ Popups de validação para feedback de ações do usuário (como formulários, erros e confirmações)
+✅ Popups de validação para feedback de ações do usuário 
 
 ✅ Troca dinâmica de imagens através de requisições a uma API
 
@@ -23,7 +23,7 @@ Vite
 
 JavaScript (ES6+)
 
-CSS (ou você pode especificar se usou alguma lib/framework como Tailwind, Sass etc.)
+CSS 
 
 📦 Como Executar o Projeto
 # Clone o repositório
