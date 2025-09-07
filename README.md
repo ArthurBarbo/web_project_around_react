@@ -30,7 +30,7 @@ CSS
 git clone https://github.com/ArthurBarbo/web_project_around_react
 
 # Acesse a pasta do projeto
-cd seu-repositorio
+cd web_project_around_react
 
 # Instale as dependências
 npm install
