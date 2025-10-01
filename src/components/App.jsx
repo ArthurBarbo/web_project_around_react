@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Header from "./Header/Header.jsx";
 import Main from "./Main/Main.jsx";
 import Footer from "./Footer/Footer.jsx";
+import Login from "./Login/Login.jsx";
 import api from "../utils/api.js";
 import CurrentUserContext from "../contexts/CurrentUserContext.js";
 
@@ -49,11 +51,24 @@ function App() {
         handleAddCard,
       }}
     >
-      {" "}
-      <div className="page__content">
-        {" "}
-        <Header /> <Main cards={cards} setCards={setCards} /> <Footer />{" "}
-      </div>{" "}
+      <BrowserRouter>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <Header />
+                <Main cards={cards} setCards={setCards} />
+                <Footer />
+              </>
+            }
+          />
+          <Route path="/signin" element={<Login onLogin={() => {}} />} />
+          {/*laceholder para evitar erro*/}
+          {/*<Route path="/signup" element={<Register />} />*/}
+          <Route path="*" element={<Navigate to="/" />} />
+        </Routes>
+      </BrowserRouter>
     </CurrentUserContext.Provider>
   );
 }
