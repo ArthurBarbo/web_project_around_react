@@ -18,12 +18,12 @@ Este é um **projeto frontend** utilizando **Vite** e **React**, com todas as fu
 1. Clone o repositório:
 
 ```bash
-git clone https://github.com/seu-usuario/nome-do-repositorio.git
-Entre na pasta do projeto:
+git clone https://github.com/ArthurBarbo/web_project_around_react
+Entre na pasta do projeto:web_project_around_react
 
 bash
 Copiar código
-cd nome-do-repositorio
+cd web_project_around_react
 Instale as dependências:
 
 bash
