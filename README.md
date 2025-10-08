@@ -30,7 +30,7 @@ O projeto foi finalizado e está pronto para uso ou futuras melhorias.
 
 ```bash
 git clone https://github.com/ArthurBarbo/web_project_around_react
-Acesse a pasta do projeto:
+Entre na pasta do projeto:web_project_around_react
 
 bash
 Copiar código
